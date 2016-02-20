@@ -45,10 +45,13 @@ while True:
     temp = commands.getoutput("/opt/vc/bin/vcgencmd measure_temp")
     initTempPos = str(temp).find("=")
     finishTempPos = str(temp).find("'")
-    str(temp)[initTempPos+1:finishTempPos]
+    print "initTempPos =",initTempPos
+    print "finishTempPos =",finishTempPos
+    temp = str(temp)[initTempPos+1:finishTempPos]
     print temp
+
     try:
-        temp_int = int(temp)
+        temp_int = float(temp)
     except:
         print "not able to transform to int"
     if temp_int > 60:
