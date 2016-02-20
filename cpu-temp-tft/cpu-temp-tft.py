@@ -1,8 +1,7 @@
 from time import sleep
 
-
-import Image
-import ImageDraw
+#import Image
+#import ImageDraw
 import ImageFont
 
 from lib_tft24T import TFT24T
