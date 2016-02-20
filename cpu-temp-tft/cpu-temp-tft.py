@@ -46,6 +46,7 @@ while True:
     try:
         temp_int = int(temp)
     except:
+        print "not able to transform to int"
     if temp_int > 60:
         if TFT.is_landscape:
             draw.textwrapped((0,0), temp, 38, 20, font, "red")
