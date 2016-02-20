@@ -43,6 +43,9 @@ TFT.clear()
 font= ImageFont.load_default()
 while True:
     temp = commands.getoutput("/opt/vc/bin/vcgencmd measure_temp")
+    initTempPos = temp.find("=")
+    finishTempPos = temp.find("'")
+    temp = [initTempPos+1:finishTempPos]
     print temp
     try:
         temp_int = int(temp)
