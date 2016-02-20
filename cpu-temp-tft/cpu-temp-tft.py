@@ -1,19 +1,21 @@
 from time import sleep
-
-#import Image
-#import ImageDraw
+import sys
+import Image
+import ImageDraw
 import ImageFont
-
-from lib_tft24T import TFT24T
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
 import spidev
 
 from subprocess import call
 import commands
 import os
+
+from lib_tft24T import TFT24T
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+
 
 # Raspberry Pi configuration.
 #For LCD TFT SCREEN:
@@ -38,7 +40,7 @@ TFT.initLCD(DC, RST, LED)
 draw = TFT.draw()
 TFT.backlite(1)
 TFT.clear()
-font=ImageFont.truetype('FreeSans.ttf', 50)
+font= ImageFont.load_default()
 while True:
     temp = commands.getoutput("/opt/vc/bin/vcgencmd measure_temp")
     print temp
