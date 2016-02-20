@@ -42,6 +42,7 @@ TFT.clear()
 font=ImageFont.truetype('FreeSans.ttf', 50)
 while True:
     temp = commands.getoutput("/opt/vc/bin/vcgencmd measure_temp")
+    print temp
     try:
         temp_int = int(temp)
     except:
@@ -55,3 +56,4 @@ while True:
             draw.textwrapped((0,0), temp, 38, 20, font, "lightblue")
         else:
             draw.textwrapped((0,0), temp, 27, 20, font, "lightblue") # a bit narrower for portrait!
+    sleep(10)
