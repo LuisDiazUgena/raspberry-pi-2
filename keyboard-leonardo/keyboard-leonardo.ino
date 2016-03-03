@@ -1,12 +1,13 @@
+#include <Arduino.h>
 
-#include "HID-Project.h"
+#define ENCODER_OPTIMIZE_INTERRUPTS
 #include <Encoder.h>
 #include <Bounce2.h>
 
 //buttons settings
 //pin definitios
 int A = 9, B = 8;
-int up = 10, down = 11, left = 12, right = 13;
+int up = 10, down = 11, left = 12, right = 14;
 //bounce objects
 Bounce btnA = Bounce();
 Bounce btnB = Bounce();
@@ -76,7 +77,7 @@ void loop() {
   updateButtons();
   sendKeyStrokes();
   Serial.println(statusA);
-
+  /*
   nextTime = millis() + intervale;
   while (digitalRead(pinBtn)) {
     clicked = true;
@@ -108,7 +109,7 @@ void loop() {
       decreaseVol();
       oldPosition = newPosition;
     }
-  }
+  }*/
 }
 void nextSong() {
   Consumer.write(MEDIA_NEXT);

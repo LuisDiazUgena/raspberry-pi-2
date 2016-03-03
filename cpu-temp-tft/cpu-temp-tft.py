@@ -16,7 +16,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 
-
 # Raspberry Pi configuration.
 #For LCD TFT SCREEN:
 DC = 24
@@ -51,10 +50,10 @@ while True:
     print temp
 
     try:
-        temp_int = float(temp)
+        temp_num = float(temp)
     except:
         print "not able to transform to int"
-    if temp_int > 60:
+    if temp_num > 60:
         if TFT.is_landscape:
             draw.textwrapped((0,0), temp, 38, 20, font, "red")
         else:
