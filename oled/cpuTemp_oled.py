@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from time import sleep
 
 import sys
@@ -9,8 +11,8 @@ from oled.device import ssd1306, sh1106
 from oled.render import canvas
 from PIL import ImageFont
 
-font = ImageFont.load_default()
-oled = ssd1306(port=1, address=0x3C)
+fontName = ImageFont.load_default()
+device = ssd1306(port=1, address=0x3C)
 
 def getTempCPU():
     temp = commands.getoutput("/opt/vc/bin/vcgencmd measure_temp")
@@ -23,13 +25,12 @@ def getTempCPU():
     except:
         print "Unable to transform to float"
 
-with canvas(oled) as draw:
-    padding = 2
+with canvas(device) as draw:
+    margin = 2
     sleep_time = 2.5 #seconds
 
-    font = ImageFont.load_default()
     while True:
         cpuTemp = getTempCPU()
 
-        draw.text((x,x),cpuTemp,font=font,fill=255)
+        draw.text((margin,margin),cpuTemp,font=fontName,fill=255)
         sleep(sleep_time)
