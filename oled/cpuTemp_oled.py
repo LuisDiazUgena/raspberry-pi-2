@@ -25,8 +25,11 @@ def getTempCPU():
 
 with canvas(oled) as draw:
     padding = 2
+    sleep_time = 2.5 #seconds
 
     font = ImageFont.load_default()
-    cpuTemp = getTempCPU()
+    while True:
+        cpuTemp = getTempCPU()
 
-    draw.text((x,x),cpuTemp,font=font,fill=255)
+        draw.text((x,x),cpuTemp,font=font,fill=255)
+        sleep(sleep_time)
