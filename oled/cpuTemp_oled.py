@@ -25,12 +25,13 @@ def getTempCPU():
     except:
         print "Unable to transform to float"
 
-with canvas(device) as draw:
-    margin = 2
-    sleep_time = 2.5 #seconds
+while True:
+        margin = 2
+        sleep_time = 2.5 #seconds
+    with canvas(device) as draw:
 
-    while True:
         cpuTemp = getTempCPU()
-
-        draw.text((margin,margin),cpuTemp,font=fontName,fill=255)
+        print "Cpu Temp is:",str(cpuTemp)
+        if cpuTemp: #Just make sure the cpuTemp has a value
+            draw.text((margin,margin),str(cpuTemp),font=fontName,fill=255)
         sleep(sleep_time)
