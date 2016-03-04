@@ -11,7 +11,8 @@ from oled.device import ssd1306, sh1106
 from oled.render import canvas
 from PIL import ImageFont
 
-fontName = ImageFont.load_default()
+fontName = ImageFont.truetype("font1.ttf",80)
+#fontName = ImageFont.load_default()
 device = ssd1306(port=1, address=0x3C)
 
 def getTempCPU():
@@ -26,8 +27,8 @@ def getTempCPU():
         print "Unable to transform to float"
 
 while True:
-        margin = 2
-        sleep_time = 2.5 #seconds
+    margin = 2
+    sleep_time = 2.5 #seconds
     with canvas(device) as draw:
 
         cpuTemp = getTempCPU()
