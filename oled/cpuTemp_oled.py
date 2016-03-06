@@ -34,7 +34,7 @@ with canvas(device) as draw:
 while True:
     margin = 2
     sleep_time = 2.5 #seconds
-
+    oldTemp = 0
     cpuTemp = getTempCPU()
 
     print "Cpu Temp is:",str(cpuTemp)
