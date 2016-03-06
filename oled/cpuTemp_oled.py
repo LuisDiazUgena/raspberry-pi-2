@@ -36,8 +36,10 @@ while True:
     sleep_time = 2.5 #seconds
 
     cpuTemp = getTempCPU()
-    with canvas(device) as draw:
-        print "Cpu Temp is:",str(cpuTemp)
-        if cpuTemp: #Just make sure the cpuTemp has a value
+
+    print "Cpu Temp is:",str(cpuTemp)
+    if cpuTemp and cpuTemp != oldTemp: #Just make sure the cpuTemp has a value and it's different
+        with canvas(device) as draw:
             draw.text((margin,margin),str(cpuTemp),font=fontName,fill=255)
-        sleep(sleep_time)
+    oldTemp = cpuTemp
+    sleep(sleep_time)
