@@ -34,9 +34,9 @@ with canvas(device) as draw:
 while True:
     margin = 2
     sleep_time = 2.5 #seconds
-    with canvas(device) as draw:
 
-        cpuTemp = getTempCPU()
+    cpuTemp = getTempCPU()
+    with canvas(device) as draw:
         print "Cpu Temp is:",str(cpuTemp)
         if cpuTemp: #Just make sure the cpuTemp has a value
             draw.text((margin,margin),str(cpuTemp),font=fontName,fill=255)
