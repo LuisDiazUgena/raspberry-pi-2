@@ -29,7 +29,7 @@ def getTempCPU():
 with canvas(device) as draw:
     logo = Image.open("pi_logo.png")
     draw.bitmap((32, 0), logo, fill=1)
-    sleep(1)
+    sleep(3)
 #Temperature rutine
 while True:
     margin = 2
