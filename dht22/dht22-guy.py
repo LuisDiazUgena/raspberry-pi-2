@@ -41,7 +41,7 @@ valueT.pack(side=LEFT)
 labelH.pack(side=LEFT)
 valueH.pack(side=LEFT)
 
-root.mainloop()
+#root.mainloop()
 
 sensor = Adafruit_DHT.DHT22
 pin=21
