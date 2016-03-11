@@ -77,7 +77,7 @@ void loop() {
   updateButtons();
   sendKeyStrokes();
   Serial.println(statusA);
-  /*
+
   nextTime = millis() + intervale;
   while (digitalRead(pinBtn)) {
     clicked = true;
@@ -109,7 +109,7 @@ void loop() {
       decreaseVol();
       oldPosition = newPosition;
     }
-  }*/
+  }
 }
 void nextSong() {
   Consumer.write(MEDIA_NEXT);
