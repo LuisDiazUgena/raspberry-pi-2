@@ -6,6 +6,7 @@ def doNothing():
     print ("Ok, I'm going to do nothing")
 
 root = Tk()
+root.title("DHT22")
 root.minsize(width=600, height=200)
 root.maxsize(width=780,height=460)
 
