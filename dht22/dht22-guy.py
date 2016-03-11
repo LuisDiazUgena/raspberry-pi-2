@@ -1,6 +1,6 @@
 #!/usr/bin/python
 from Tkinter import *
-#import Adafruit_DHT
+import Adafruit_DHT
 
 def doNothing():
     print ("Ok, I'm going to do nothing")
