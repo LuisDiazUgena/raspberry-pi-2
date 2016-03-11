@@ -1,54 +1,59 @@
 #!/usr/bin/python
 from Tkinter import *
-import Adafruit_DHT
+import tkMessageBox
+import tkFont
+import webbrowser
+from threading import Timer
 
 def doNothing():
     print ("Ok, I'm going to do nothing")
+def about():
+    tkMessageBox.showinfo("About","App developed by Luis Diaz")
+def openGit():
+    url="https://github.com/LuisDiazUgena/raspberry-pi-2/tree/master/dht22"
+    webbrowser.open(url, new=2, autoraise=True)
+def measure():
+    print("Lets get some data!")
+    # Wait 1 second between each measurement
+
+class App:
+
+    def __init__(self,_master):
+        # ***** Toolbar *****
+        self.toolBar = Frame(_master,bd=1,relief=SUNKEN)
+        # ***** Statusbar *****
+        self.status = Label(_master,text=" Preparing to do read...",bd=1,relief=SUNKEN,anchor=W)
+        # ***** Buttons to bars *****
+        self.aboutButton = Button(self.toolBar,text="About",command = about)
+        self.githubButton = Button(self.toolBar,text="Github repo",command = openGit)
+        self.quitButton = Button(self.toolBar,text="Quit",command = root.quit)
+        # ***** Pack buttons *****
+        self.aboutButton.pack(side=LEFT,padx=2,pady=2) #add padding
+        self.githubButton.pack(side=LEFT,padx=2,pady=2) #add padding
+        self.quitButton.pack(side=RIGHT,padx=2,pady=2) #add padding
+        self.toolBar.pack(side=TOP,fill=X)
+        self.status.pack(side=BOTTOM,fill=X)
+        # ***** Frames for labels *****
+        self.topFrame = Frame(_master)
+        self.bottomFrame = Frame(_master)
+        self.topFrame.pack(side=TOP)
+        self.bottomFrame.pack(side=BOTTOM)
+        # ***** Labels *****
+        self.customFont = tkFont.Font(family="Helvetica", size=20)
+        labelT = Label(self.topFrame,text="Temperature",font=self.customFont)
+        valueT = Label(self.topFrame,text="None",font=self.customFont)
+        labelH = Label(self.bottomFrame,text="Humidity",font=self.customFont)
+        valueH = Label(self.bottomFrame,text="None",font=self.customFont)
+        # ***** Pack labels *****
+        labelT.pack(side=LEFT)
+        valueT.pack(side=LEFT)
+        labelH.pack(side=LEFT)
+        valueH.pack(side=LEFT)
+        measure()
 
 root = Tk()
 root.title("DHT22")
 root.minsize(width=600, height=200)
 root.maxsize(width=780,height=460)
-
-# ***** Toolbar *****
-toolBar = Frame(root,bd=1,relief=SUNKEN)
-
-instertButton = Button(toolBar,text="About",command = doNothing)
-instertButton.pack(side=LEFT,padx=2,pady=2) #add padding
-printButton = Button(toolBar,text="Github repo",command = doNothing)
-printButton.pack(side=LEFT,padx=2,pady=2) #add padding
-quitButton = Button(toolBar,text="Quit",command = root.quit)
-quitButton.pack(side=LEFT,padx=2,pady=2) #add padding
-toolBar.pack(side=TOP,fill=X)
-
-# ***** Statusbar *****
-status = Label(root,text=" Preparing to do read...",bd=1,relief=SUNKEN,anchor=W)
-status.pack(side=BOTTOM,fill=X)
-#"run" the main window
-# ***** Frames *****
-topFrame=Frame(root)
-topFrame.pack(side=TOP)
-bottomFrame = Frame(root)
-bottomFrame.pack(side=BOTTOM)
-# ***** Elements *****
-
-labelT = Label(topFrame,text="Temperature",font=("Helvetica", 25))
-valueT = Label(topFrame,text="No data",font=("Helvetica", 25))
-labelH = Label(bottomFrame,text="Humidity",font=("Helvetica", 25))
-valueH = Label(bottomFrame,text="No data",font=("Helvetica", 25))
-
-labelT.pack(side=LEFT)
-valueT.pack(side=LEFT)
-labelH.pack(side=LEFT)
-valueH.pack(side=LEFT)
-
-#root.mainloop()
-
-sensor = Adafruit_DHT.DHT22
-pin=21
-while True:
-    humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-    if humidity is not None and temperature is not None:
-    	print 'Temp={0:0.1f}C  Humidity={1:0.1f}%'.format(temperature, humidity)
-    else:
-    	print 'Failed to get reading. Try again!'
+myApp = App(root)
+root.mainloop()
