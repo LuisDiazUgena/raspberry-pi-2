@@ -3,7 +3,8 @@ from Tkinter import *
 import tkMessageBox
 import tkFont
 import webbrowser
-from threading import Timer
+import threading
+import time
 
 def doNothing():
     print ("Ok, I'm going to do nothing")
@@ -13,8 +14,7 @@ def openGit():
     url="https://github.com/LuisDiazUgena/raspberry-pi-2/tree/master/dht22"
     webbrowser.open(url, new=2, autoraise=True)
 def measure():
-    print("Lets get some data!")
-    # Wait 1 second between each measurement
+    print("Let's get some data!")
 
 class App:
 
@@ -56,4 +56,5 @@ root.title("DHT22")
 root.minsize(width=600, height=200)
 root.maxsize(width=780,height=460)
 myApp = App(root)
+
 root.mainloop()
